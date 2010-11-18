@@ -8,7 +8,8 @@ rm -rf /usr/local/var/genenews/settings_local.py
 ln -s /usr/local/var/genenews/settings_local.production /usr/local/var/genenews/settings_local.py
 pushd /usr/local/var/genenews/
 python manage.py syncdb
-launchctl unload /Library/LaunchDaemons/org.macports.nginx.plist
-launchctl load /Library/LaunchDaemons/org.macports.nginx.plist
+launchctl stop it.unbit.projects.uwsgi
+launchctl start it.unbit.projects.uwsgi
+chmod 777 /tmp/uwsgi.sock
 popd
 popd
