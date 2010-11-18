@@ -33,4 +33,4 @@ ADMIN_MEDIA_PREFIX = '/admin_media/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'hk7%j+@c_%xe%8cof8bj!zqfyt^0prg-ut-n3p&22$y*4k%0c2'
 
-#TEMPLATE_DIRS = ('/usr/local/var/genenews/templates/')
+TEMPLATE_DIRS = ('/usr/local/var/genenews/templates/',)
