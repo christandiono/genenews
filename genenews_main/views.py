@@ -7,3 +7,9 @@ from genenews_main.models import Article
 def index(request):
     articles = Article.objects.all()[:10]
     return render_to_response('index.html',{'articles': articles}, context_instance=RequestContext(request))
+
+def submit(request):
+    if request.method=="POST":
+        return HttpResponse("foo")
+    else:
+        return render_to_response('submit.html')

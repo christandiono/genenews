@@ -15,7 +15,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
+    (r'^accounts/', include('user_auth.urls')),
     (r'^user/', include('genenews.user_pages.urls')),
+    url(r'^submit/$', 'genenews_main.views.submit', name='submit'),
     (r'^$', 'genenews_main.views.index'),
 )
 

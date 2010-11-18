@@ -73,6 +73,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(dirname, 'templates'),
+    '/Library/Python/2.5/site-packages/django/contrib/auth/tests/templates/',
 )
 
 INSTALLED_APPS = (
