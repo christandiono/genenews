@@ -67,6 +67,7 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'genenews.urls'
 
+dirname = os.path.dirname(globals()['__file__'])
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
