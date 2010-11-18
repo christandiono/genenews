@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Overview for {{ user.username }}{% endblock title %}
+
+{% block content %}
+<h2>Overview for {{ user.username }}</h2>
+<div id="userinfo">
+  <table>
+    <tr>
+      <th>Submitted stories</th>
+      <td>{{ articles.count }}</td>
+    </tr>
+    <tr>
+      <th>User since</th>
+      <td>{{ user.date_joined|timesince }}</td>
+    </tr>
+    <tr>
+      <th>Last login</th>
+      <td>{{ user.last_login|timesince }}</td>
+    </tr>
+  </table>
+</div>
+{% include 'article_list.html' %}
+{% endblock content %}

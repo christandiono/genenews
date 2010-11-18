@@ -1,0 +1,16 @@
+<ol>
+{% for article in articles %}
+<li><h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+posted by <a href="{% url user-index article.user.username %}">{{ article.user }}</a>
+<br />
+Genes:
+{% spaceless %}
+{% for gene in article.genes.all %}{% if not forloop.first %}, {% endif %}<a href="#">{{ gene }}</a>{% empty %}
+none
+{% endfor %}
+{% endspaceless %}
+</li>
+{% empty %}
+<li>Too bad, no stories!</li>
+{% endfor %}
+</ol>

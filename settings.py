@@ -1,3 +1,5 @@
+import os
+
 # Django settings for genenews project.
 
 DEBUG = True
@@ -69,7 +71,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/Users/chris/genenews/templates',
+    os.path.join('templates'),
 )
 
 INSTALLED_APPS = (
@@ -81,4 +83,6 @@ INSTALLED_APPS = (
     'genenews.genenews_main',
 )
 
-DEFAULT_CONTENT_TYPE = 'application/xhtml+xml'
+APPEND_SLASH = True
+
+from settings_local import *

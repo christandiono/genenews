@@ -3,20 +3,6 @@
 {% block title %}Front page{% endblock title %}
 
 {% block content %}
-<h2>Hello world!</h2>
-<ol>
-{% for article in articles %}
-<li><a href="{{ article.url }}">{{ article.title }}</a><br />posted by <a href="#">{{ article.user }}</a>
-<br />
-Genes:
-{% spaceless %}
-{% for gene in article.genes.all %}{% if not forloop.first %}, {% endif %}<a href="#">{{ gene }}</a>{% empty %}
-none
-{% endfor %}
-{% endspaceless %}
-</li>
-{% empty %}
-<li>Too bad, no stories!</li>
-{% endfor %}
-</ol>
+<h2>Front Page</h2>
+{% include 'article_list.html' %}
 {% endblock content %}

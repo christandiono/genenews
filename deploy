@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+pushd /usr/local/var/ # clone command below will clone it to /usr/local/var/genenews
+
+rm -rf .
+git init .
+git clone git://github.com/christandiono/genenews.git
+rm -rf /usr/local/var/settings_local.py
+ln -s /usr/local/var/settings_local.production /usr/local/var/settings_local.py
+launchctl unload /Library/LaunchDaemons/org.macports.nginx.plist
+launchctl load /Library/LaunchDaemons/org.macports.nginx.plist
