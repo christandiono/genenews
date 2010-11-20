@@ -18,6 +18,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('user_auth.urls')),
     (r'^user/', include('genenews.user_pages.urls')),
     url(r'^submit/$', 'genenews_main.views.submit', name='submit'),
+    url(r'^submit/autocomplete/$', 'genenews_main.views.gene_autocomplete', name='gene_autocomplete'),
     (r'^$', 'genenews_main.views.index'),
 )
 

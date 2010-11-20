@@ -37,7 +37,8 @@ def login(request, template_name='user_auth/login.html', redirect_field_name=RED
                 request.session.delete_test_cookie()
             return HttpResponseRedirect(redirect_to)
         else:
-            form.clear_sensitive()
+            #form.clear_sensitive()
+            pass
     else:
         form = AuthenticationForm(request)
     request.session.set_test_cookie()

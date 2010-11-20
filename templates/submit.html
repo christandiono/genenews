@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <script type="text/javascript" src="/media/js/jquery-1.3.2.min.js"></script> 
+<script type="text/javascript" src="/media/js/jquery-ui-1.7.2.custom.min.js"></script> 
+<script type="text/javascript" src="/media/js/jquery.autocomplete.min.js"></script> 
+<link rel="stylesheet" href="/media/css/jquery-ui-1.7.2.custom.css" /> 
+<link rel="stylesheet" type="text/css" href="/media/css/jquery.autocomplete.css" /> 
+
+<script type="text/javascript">
+{% comment %}
+Add these CDATA tags because the insertion of HTML with .append() causes the document not to
+validate. Actually if we were serving it as application/xml+xhtml it wouldn't work at all.
+{% endcomment %}
+//<![CDATA[
+var members = new Array();
+$(document).ready(function(){
+  $('#addgene').autocomplete('{% url gene_autocomplete %}', {
+    dataType: 'json',
+    formatItem: function(item) {
+      return item;},
+    parse: function(data) {
+      var array = new Array();
+      for (var i=0; i<data.length; i++){
+        array[array.length]={value: data[i].id, data: data[i].name};
+      }
+      return array;
+    }}
+  ).result(function(event, item, id) {
+    if (members.indexOf(item) == -1)
+    {
+      $('#genes').append('<p style="margin:3px"><input type="checkbox" name="'+id+'" checked="checked" />'+item+'</p>');
+      members.splice(members.length,0,item);
+    }
+    $('#addgene').val('');
+  });
+});
+//]]>
+</script>
+{% endblock head %}
+
+
+{% block content %}
+<form method="post">
+    {{form.as_table}}
+    <input type="text" id="addgene" />
+    <div id="genes"></div>
+</form>
+{% endblock content %}
