@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Debug</key>
+	<false/>
+	<key>Label</key>
+	<string>it.unbit.projects.uwsgi</string>
+	<key>OnDemand</key>
+	<false/>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/uwsgi</string>
+		<string>--pythonpath</string>
+		<string>/usr/local/var</string>
+		<string>--socket</string>
+		<string>/tmp/uwsgi.sock</string>
+		<string>--chmod-socket=777</string>
+	</array>
+	<key>Sockets</key>
+	<dict>
+		<key>RegistryDomainSocket</key>
+		<dict>
+			<key>SockFamily</key>
+			<string>Unix</string>
+			<key>SockPassive</key>
+			<true/>
+			<key>SockPathMode</key>
+			<integer>511</integer>
+			<key>SockPathName</key>
+			<string>/tmp/uwsgi.sock</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
