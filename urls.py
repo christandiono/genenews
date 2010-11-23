@@ -16,14 +16,16 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('user_auth.urls')),
+    url(r'^article/', include('articles.urls')),
     (r'^user/', include('genenews.user_pages.urls')),
     url(r'^submit/$', 'genenews_main.views.submit', name='submit'),
     url(r'^submit/autocomplete/$', 'genenews_main.views.gene_autocomplete', name='gene_autocomplete'),
-    (r'^$', 'genenews_main.views.index'),
+    url(r'^$', 'genenews_main.views.index', name="index"),
 )
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/chris/genenews/media'}),
+        (r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/chris/genenews/static'}),
     )
 

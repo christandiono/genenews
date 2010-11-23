@@ -4,14 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
     <title>{% block title %}{% endblock title %} | GeneNews</title>
-    <link rel="stylesheet" href="/media/css/layout.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
     <link rel="shortcut icon" href="/favicon.ico" /> 
     {% block head %}{% endblock head %}
   </head>
   <body>
     <div id="header">
-        <h1>GeneNews</h1>
-      <p id="loginarea">{% if request.user.is_authenticated %}Welcome, {{ request.user.username }} (<a href="{% url auth_logout %}">logout</a>){% else %}Register (not yet working) | <a href="{% url auth_login %}?next={{ request.path }}">Login</a>{% endif %}</p>
+        <h1><a href="{% url index %}">GeneNews</a></h1>
+        <p id="loginarea">{% if request.user.is_authenticated %}Welcome, {{ request.user.username }} (<a href="{% url auth_logout %}">logout</a>) | <a href="{% url submit %}">Submit something</a>{% else %}Register (not yet working) | <a href="{% url auth_login %}?next={{ request.path }}">Login</a>{% endif %}</p>
     </div>
     <div id="content">
       {% block content %}{% endblock content %}

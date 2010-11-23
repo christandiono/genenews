@@ -94,4 +94,6 @@ INSTALLED_APPS = (
 
 APPEND_SLASH = True
 
+SESSION_COOKIE_NAME = 'dev_sessionid' if DEBUG else 'sessionid'
+
 from settings_local import *

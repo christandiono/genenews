@@ -1,0 +1,11 @@
+<h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
+<a href="{% url article article_id=article.id %}">Permalink</a>
+<br />
+posted by <a href="{% url user-index article.user.username %}">{{ article.user }}</a>
+<br />
+Genes:
+{% spaceless %}
+{% for gene in article.genes.all %}{% if not forloop.first %}, {% endif %}<a href="/jbrowse/?loc={{ gene }}">{{ gene }}</a>{% empty %}
+none
+{% endfor %}
+{% endspaceless %}

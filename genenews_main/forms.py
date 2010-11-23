@@ -5,4 +5,4 @@ from genenews_main.models import Article
 class SubmissionForm(ModelForm):
     class Meta:
         model = Article
-        exclude = ('user')
+        exclude = ('user', 'genes')
