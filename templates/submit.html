@@ -55,7 +55,7 @@ $(document).ready(function(){
     {% endfor %}
         <tr>
 			<th style="text-align: left;">Gene(s)</th>
-			<td><input type="text" id="addgene" /><div id="genes"></div></td>
+            <td><input type="text" id="addgene" /><div id="genes">{% for gene in genes %}<p style="margin:3px"><input type="checkbox" name="gene" value="{{ gene.id }}" checked="checked" />{{ gene }}</p>{% endfor %}</div></td>
 			<td>{% comment %}empty{% endcomment %}</td>
 		</tr>
 	</table>

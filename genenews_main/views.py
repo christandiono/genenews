@@ -9,18 +9,19 @@ from genenews_main.models import Article, Gene
 from genenews_main.forms import SubmissionForm
 
 def index(request):
-    articles = Article.objects.all()[:25]
+    articles = Article.objects.all().order_by('-pk')[:25]
     return render_to_response('index.html',{'articles': articles}, context_instance=RequestContext(request))
 
 @login_required
 def submit(request):
+    genes = []
     if request.method=="POST":
         form = SubmissionForm(request.POST)
+        try:
+            genes = [Gene.objects.get(pk=long(gene_id)) for gene_id in request.POST.getlist('gene')]
+        except Gene.DoesNotExist:
+            return HttpResponseForbidden()
         if form.is_valid():
-            try:
-                genes = [Gene.objects.get(pk=long(attendee_id)) for attendee_id in request.POST.getlist('gene')]
-            except Gene.DoesNotExist:
-                return HttpResponseForbidden()
             article = form.save(commit=False)
             article.user = request.user
             article.save()
@@ -29,7 +30,7 @@ def submit(request):
             return HttpResponseRedirect(reverse('article', args=[article.id]))
     else:
         form = SubmissionForm()
-    return render_to_response('submit.html', {'form': form}, context_instance=RequestContext(request))
+    return render_to_response('submit.html', {'form': form, 'genes': genes}, context_instance=RequestContext(request))
 
 
 def gene_autocomplete(request):
@@ -43,7 +44,6 @@ def gene_autocomplete(request):
         genes = Gene.objects.filter(name__icontains=request.GET.get('q'))[:request.GET.get('limit', 10)]
         tempstr = '['
         for index, m in enumerate(genes):
-            print index
             temp = {}
             temp['id'] = smart_str(m.id)
             temp['name'] = smart_str(m.name)

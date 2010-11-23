@@ -22,5 +22,8 @@ class Gene(models.Model):
     name = models.TextField()
     sequence = models.ForeignKey(Sequence)
 
+    def fullname(self):
+        return "%s - %s" % (unicode(self.sequence), unicode(self.name))
+
     def __unicode__(self):
         return unicode(self.name)
