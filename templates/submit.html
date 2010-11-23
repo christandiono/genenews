@@ -32,7 +32,7 @@ $(document).ready(function(){
   ).result(function(event, item, id) {
     if (members.indexOf(item) == -1)
     {
-      $('#genes').append('<p style="margin:3px"><input type="checkbox" name="gene" value="'+id+'" checked="checked" />'+item+'</p>');
+    $('#genes').append('<p style="margin:3px"><input type="checkbox" name="gene" value="'+id+'" id="gene_'+id+'" checked="checked" onchange="$(this.parentNode).hide(); members.splice(members.indexOf(this.value), 1);" /><label for="gene_'+id+'">'+item+'</label></p>');
       members.splice(members.length,0,item);
     }
     $('#addgene').val('');
@@ -55,7 +55,11 @@ $(document).ready(function(){
     {% endfor %}
         <tr>
 			<th style="text-align: left;">Gene(s)</th>
-            <td><input type="text" id="addgene" /><div id="genes">{% for gene in genes %}<p style="margin:3px"><input type="checkbox" name="gene" value="{{ gene.id }}" checked="checked" />{{ gene }}</p>{% endfor %}</div></td>
+            <td><input type="text" id="addgene" />
+                <div id="genes">
+                    {% for gene in genes %}
+                    <p style="margin:3px"><input type="checkbox" name="gene" value="{{ gene.id }}" id="gene_{{ gene.id }}" checked="checked" onchange="$(this.parentNode).hide(); members.splice(members.indexOf(this.value), 1);" /><label for="gene_{{ gene.id}}">{{ gene }}</label></p>
+                    {% endfor %}</div></td>
 			<td>{% comment %}empty{% endcomment %}</td>
 		</tr>
 	</table>

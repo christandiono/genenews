@@ -18,12 +18,20 @@ class Sequence(models.Model):
     def __unicode__(self):
         return unicode(self.name)
 
-class Gene(models.Model):
+class Track(models.Model):
     name = models.TextField()
     sequence = models.ForeignKey(Sequence)
 
+    def __unicode__(self):
+        return unicode(self.name)
+
+class Gene(models.Model): # really more like an annotation
+    name = models.TextField()
+    sequence = models.ForeignKey(Sequence)
+    track = models.ForeignKey(Track)
+
     def fullname(self):
-        return "%s - %s" % (unicode(self.sequence), unicode(self.name))
+        return "%s - %s - %s" % (unicode(self.sequence), unicode(self.track), unicode(self.name))
 
     def __unicode__(self):
         return unicode(self.name)
