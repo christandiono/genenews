@@ -16,6 +16,8 @@
 		<string>--socket</string>
 		<string>/tmp/uwsgi.sock</string>
         <string>--chmod-socket=777</string>
+        <string>--pythonpath</string>
+        <string>/usr/local/var</string>
 	</array>
 	<key>Sockets</key>
 	<dict>
