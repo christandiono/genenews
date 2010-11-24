@@ -11,8 +11,9 @@
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/local/bin/uwsgi</string>
-        <string>-M</string>
         <string>-L</string>
+        <string>-p</string>
+        <string>3</string>
 		<string>--socket</string>
 		<string>/tmp/uwsgi.sock</string>
         <string>--chmod-socket=777</string>
