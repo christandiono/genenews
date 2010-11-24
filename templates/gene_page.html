@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Overview for {{ gene.name }}{% endblock title %}
+
+{% block content %}
+<h2>Overview for {{ gene.name }}</h2>
+<div id="geneinfo">
+    <table>
+        <tr>
+            <th>Location:</th>
+            <td><a href="/jbrowse/?loc={{ gene.name }}">{{ gene.sequence }}</a></td>
+        </tr>
+        <tr>
+            <th>Annotation source:</th>
+            <td>{{ gene.track }}</td>
+        </tr>
+    </table>
+</div>
+<h3>Related articles</h3>
+<div id="articlelist">
+    {% include 'article_list.html' %}
+</div>
+{% endblock content %}

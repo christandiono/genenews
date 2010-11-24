@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.encoding import smart_str
 from genenews_main.models import Article, Gene, Sequence
@@ -33,7 +33,7 @@ def submit(request):
         form = SubmissionForm()
     return render_to_response('submit.html', {'form': form, 'genes': genes}, context_instance=RequestContext(request))
 
-
+@login_required
 def gene_autocomplete(request):
     if request.method == "GET":
         if not request.GET.has_key('q') or not request.GET.has_key('limit'):
@@ -58,3 +58,9 @@ def gene_autocomplete(request):
     resp = HttpResponse()
     resp.status_code = 405
     return resp
+
+def gene_page(request, gene_name):
+    gene = get_object_or_404(Gene, name=gene_name)
+    articles = gene.article_set.all()
+    seq = gene.sequence
+    return render_to_response('gene_page.html', {'gene':gene, 'articles':articles, 'seq':seq}, context_instance=RequestContext(request))
