@@ -11,11 +11,11 @@
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/local/bin/uwsgi</string>
-		<string>--pythonpath</string>
-		<string>/usr/local/var</string>
 		<string>--socket</string>
 		<string>/tmp/uwsgi.sock</string>
-		<string>--chmod-socket=777</string>
+        <string>--chmod-socket=777</string>
+        <string>-M</string>
+        <string>-L</string>
 	</array>
 	<key>Sockets</key>
 	<dict>
