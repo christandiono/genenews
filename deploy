@@ -1,15 +1,12 @@
 #!/usr/bin/env bash
 
-pushd /usr/local/var/ # clone command below will clone it to /usr/local/var/genenews
-
-rm -rf ./genenews
-git clone git://github.com/christandiono/genenews.git
+pushd /usr/local/var/genenews
+git checkout .
+git pull git://github.com/christandiono/genenews.git
 rm -rf /usr/local/var/genenews/settings_local.py
 ln -s /usr/local/var/genenews/settings_local.production /usr/local/var/genenews/settings_local.py
-pushd /usr/local/var/genenews/
 python manage.py syncdb
 launchctl stop it.unbit.projects.uwsgi
 launchctl start it.unbit.projects.uwsgi
 chmod 777 /tmp/uwsgi.sock
-popd
 popd
