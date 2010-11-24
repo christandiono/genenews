@@ -90,6 +90,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.admin',
     'genenews.genenews_main',
+    'genenews.uwsgi_admin',
 )
 
 APPEND_SLASH = True

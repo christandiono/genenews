@@ -13,7 +13,7 @@
 		<string>/usr/local/bin/uwsgi</string>
         <string>-L</string>
         <string>-p</string>
-        <string>3</string>
+        <string>2</string>
 		<string>--socket</string>
 		<string>/tmp/uwsgi.sock</string>
         <string>--chmod-socket=777</string>

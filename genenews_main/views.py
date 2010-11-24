@@ -44,7 +44,6 @@ def gene_autocomplete(request):
             return HttpResponseForbidden()
         qtemp = Q(name__icontains=request.GET.get('q'))
         genes = Gene.objects.filter(qtemp)[:request.GET.get('limit', 10)]
-        print genes
         tempstr = '['
         for index, m in enumerate(genes):
             temp = {}
