@@ -5,20 +5,20 @@
 {% block content %}
 <h2>Overview for {{ user.username }}</h2>
 <div id="userinfo">
-  <table>
-    <tr>
-      <th>Submitted stories</th>
-      <td>{{ articles.count }}</td>
-    </tr>
-    <tr>
-      <th>User since</th>
-      <td>{{ user.date_joined|timesince }} ago</td>
-    </tr>
-    <tr>
-      <th>Last login</th>
-      <td>{{ user.last_login|timesince }} ago</td>
-    </tr>
-  </table>
+    <table>
+        <tr>
+            <th>Submitted stories</th>
+            <td>{{ articles.count }}</td>
+        </tr>
+        <tr>
+            <th>User since</th>
+            <td>{{ user.date_joined|timesince }} ago</td>
+        </tr>
+        <tr>
+            <th>Last login</th>
+            <td>{{ user.last_login|timesince }} ago</td>
+        </tr>
+    </table>
 </div>
 {% include 'article_list.html' %}
 {% endblock content %}
