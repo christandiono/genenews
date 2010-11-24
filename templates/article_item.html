@@ -5,7 +5,7 @@ posted by <a href="{% url user-index article.user.username %}">{{ article.user }
 <br />
 Genes:
 {% spaceless %}
-{% for gene in article.genes.all %}{% if not forloop.first %}, {% endif %}<a href="/jbrowse/?loc={{ gene }}">{{ gene }}</a>{% empty %}
+{% for gene in article.genes.all %}{% if not forloop.first %}, {% endif %}<a href="/jbrowse/?loc={{ gene.name }}&amp;seq={{ gene.sequence }}">{{ gene.name }}</a>{% empty %}
 none
 {% endfor %}
 {% endspaceless %}

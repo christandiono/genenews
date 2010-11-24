@@ -1,11 +1,12 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils.encoding import smart_str
-from genenews_main.models import Article, Gene
+from genenews_main.models import Article, Gene, Sequence
 from genenews_main.forms import SubmissionForm
 
 def index(request):
@@ -41,12 +42,14 @@ def gene_autocomplete(request):
             int(request.GET.get('limit'))
         except ValueError:
             return HttpResponseForbidden()
-        genes = Gene.objects.filter(name__icontains=request.GET.get('q'))[:request.GET.get('limit', 10)]
+        qtemp = Q(name__icontains=request.GET.get('q'))
+        genes = Gene.objects.filter(qtemp)[:request.GET.get('limit', 10)]
+        print genes
         tempstr = '['
         for index, m in enumerate(genes):
             temp = {}
             temp['id'] = smart_str(m.id)
-            temp['name'] = smart_str(m.name)
+            temp['name'] = smart_str(m.medname())
             if index > 0:
                 tempstr += ','
             tempstr += str(temp)

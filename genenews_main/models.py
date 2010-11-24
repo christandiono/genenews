@@ -33,5 +33,11 @@ class Gene(models.Model): # really more like an annotation
     def fullname(self):
         return "%s - %s - %s" % (unicode(self.sequence), unicode(self.track), unicode(self.name))
 
-    def __unicode__(self):
+    def medname(self):
+        return "%s - %s" % (unicode(self.sequence), unicode(self.name))
+
+    def shortname(self):
         return unicode(self.name)
+
+    def __unicode__(self):
+        return self.medname()

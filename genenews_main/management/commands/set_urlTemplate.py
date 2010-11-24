@@ -13,34 +13,28 @@ class Command(BaseCommand):
     option_list = BaseCommand.option_list + (make_option('--seq_names', dest="seq_names"), make_option('--track_names', dest="track_names"), make_option('--data_dir', dest="data_dir"))
 
     def handle(self, *args, **options):
+        '''
+        Similar to import_names, but sets the urlTemplate variable appropriately instead.
+        '''
         data_dir = options['data_dir']
         print options
         for seq in glob.glob(data_dir+"/tracks/*"):
             sequence_name = seq.split("/")[-1]
             if sequence_name not in options['seq_names'].split(','):
                 continue
-#            print sequence_name
-#            continue
             sequence_object, created_seq = Sequence.objects.get_or_create(name=sequence_name)
-            for filename in glob.glob(seq+"/*/names.json"):
+            for filename in glob.glob(seq+"/*/trackData.json"):
                 track_name = filename.split("/")[-2]
                 if track_name not in options['track_names'].split(','):
                     continue
-#                print track_name
-#                continue
                 track_object, created_track = Track.objects.get_or_create(name=track_name, sequence=sequence_object)
-                print filename    
+                print filename
                 file = open(filename)
                 input = file.read()
                 file.close()
                 decoded_input = json.loads(input)
-                for item in decoded_input:
-                    for alias in item[0]:
-    
-                        gene, created_gene = Gene.objects.get_or_create(name=alias, sequence=sequence_object, track=track_object)
-#                        if created_seq and created_gene:
-#                            print "%s: created sequence and gene" % gene.fullname()
-#                        elif created_gene:
-#                            print "%s: created new gene for existing sequence" % gene.fullname()
-#                        else:
-#                            print "%s: skipped because it's already in the db" % gene.fullname()
+                decoded_input['urlTemplate'] = "/gene/{name}/"
+                file = open(filename, 'w')
+                file.write(json.dumps(decoded_input))
+                file.close()
+#                print decoded_input
