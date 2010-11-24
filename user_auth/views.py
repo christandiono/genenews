@@ -3,7 +3,7 @@ from user_auth.settings import REDIRECT_FIELD_NAME
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.tokens import default_token_generator
 from django.core.urlresolvers import reverse
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.contrib.sites.models import Site, RequestSite
 from django.http import HttpResponseRedirect, Http404, HttpResponse, HttpResponseForbidden
 from django.template import RequestContext
@@ -185,3 +185,16 @@ def set_forward_email(request):
     else:
         form = SetForwardEmailForm(request.user)
     return render_to_response('user_auth/set_forward_email.html', {'form': form}, context_instance=RequestContext(request))
+
+def register(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            from django.contrib.auth import login as login2
+            user = authenticate(username=request.POST['username'], password=request.POST['password1'])
+            login2(request, user)
+            return redirect(reverse('user-index', args=[user.username]))
+    else:
+        form = UserCreationForm()
+    return render_to_response('user_auth/create_account.html', {'form': form}, context_instance=RequestContext(request))

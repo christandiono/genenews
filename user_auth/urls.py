@@ -30,4 +30,7 @@ urlpatterns = patterns('',
     url(r'^test/login/$',
         'user_auth.views.login_test',
         name='login_test'),
+    url(r'^create/$',
+        'user_auth.views.register',
+        name='register'),
 ) 

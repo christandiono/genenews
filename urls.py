@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^submit/autocomplete/$', 'genenews_main.views.gene_autocomplete', name='gene_autocomplete'),
     url(r'^$', 'genenews_main.views.index', name="index"),
     url(r'^gene/(?P<gene_name>.*)/$', 'genenews_main.views.gene_page', name='gene_page'),
-    url(r'^uwsgi_admin/', include('uwsgi_admin.urls')),
+#    url(r'^uwsgi_admin/', include('uwsgi_admin.urls')),
 )
 
 if settings.DEBUG:
