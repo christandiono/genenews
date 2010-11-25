@@ -1,11 +1,23 @@
+<div class="article">
+    
+<div class="articlevote">
+{% with article.id as article_id %}
+<a href="{% if request.user.is_authenticated %}javascript:void(0);{% else %}{% url auth_login %}?next={% url article article.id %}{% endif %}"><img class="vote" id="up_{{ article.id }}" src="/images/aup{% if vote and vote.is_upvote %}mod{% else %}gray{% endif %}.gif" /></a>
+<a href="{% if request.user.is_authenticated %}javascript:void(0);{% else %}{% url auth_login %}?next={% url article article.id %}{% endif %}"><img class="vote" id="down_{{ article.id }}" src="/images/adown{% if vote and vote.is_downvote %}mod{% else %}gray{% endif %}.gif" /></a>
+{% endwith %}
+</div>
+
+<div class="articletext">    
 <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
 <a href="{% url article article_id=article.id %}">Permalink</a>
-<br />
+|
 posted by <a href="{% url user-index article.user.username %}">{{ article.user }}</a>
-<br />
+|
 Genes:
 {% spaceless %}
 {% for gene in article.genes.all %}{% if not forloop.first %}, {% endif %}<a href="/jbrowse/?loc={{ gene.name }}&amp;seq={{ gene.sequence }}">{{ gene.name }}</a>{% empty %}
 none
 {% endfor %}
 {% endspaceless %}
+</div>
+</div>

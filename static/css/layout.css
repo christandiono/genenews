@@ -7,4 +7,17 @@ body {
     position: relative;
 }
 
+img.vote {
+    border: none;
+}
 
+div.articlevote {
+    width: 15px;
+    float: left; clear: left;
+    padding-right: 0.5em;
+}
+
+div.articlevote img {
+    display: block;
+    float: none; clear: both;
+}

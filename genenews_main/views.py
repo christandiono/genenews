@@ -11,7 +11,8 @@ from genenews_main.forms import SubmissionForm
 
 def index(request):
     articles = Article.objects.all().order_by('-pk')[:25]
-    return render_to_response('index.html',{'articles': articles}, context_instance=RequestContext(request))
+    entries = add_votes(request, articles)
+    return render_to_response('index.html',{'entries': entries}, context_instance=RequestContext(request))
 
 @login_required
 def submit(request):
@@ -61,5 +62,20 @@ def gene_autocomplete(request):
 def gene_page(request, gene_name):
     gene = get_object_or_404(Gene, name=gene_name)
     articles = gene.article_set.all()
+    entries = add_votes(request, articles)
     seq = gene.sequence
-    return render_to_response('gene_page.html', {'gene':gene, 'articles':articles, 'seq':seq}, context_instance=RequestContext(request))
+    return render_to_response('gene_page.html', {'gene': gene, 'entries': entries, 'seq':seq}, context_instance=RequestContext(request))
+
+def add_votes(request, articles):
+    if request.user.is_anonymous():
+        return [(article, None) for article in articles]
+
+    else:
+        out = []
+        for article in articles:
+            if article.vote_set.filter(user=request.user):
+                out.append((article, article.vote_set.get(user=request.user)))
+            else:
+                out.append((article, None))
+
+        return out

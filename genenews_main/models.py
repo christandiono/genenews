@@ -3,15 +3,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Article(models.Model):
-    user = models.ForeignKey(User)
-    title = models.CharField(max_length=300)
-    url = models.URLField()
-    genes = models.ManyToManyField('genenews_main.Gene')
-
-    def __unicode__(self):
-        return unicode(self.title)
-
 class Sequence(models.Model):
     name = models.TextField()
 
@@ -41,3 +32,23 @@ class Gene(models.Model): # really more like an annotation
 
     def __unicode__(self):
         return self.medname()
+
+class Article(models.Model):
+    user = models.ForeignKey(User)
+    title = models.CharField(max_length=300)
+    url = models.URLField()
+    genes = models.ManyToManyField(Gene)
+
+    def __unicode__(self):
+        return unicode(self.title)
+
+class Vote(models.Model):
+    article = models.ForeignKey(Article)
+    user = models.ForeignKey(User)
+    vote = models.SmallIntegerField(choices=((1, 'up'), (-1, 'down')))
+
+    def is_upvote(self):
+        return self.vote==1
+
+    def is_downvote(self):
+        return self.vote==-1
