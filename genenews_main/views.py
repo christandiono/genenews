@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirec
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.encoding import smart_str
-from genenews_main.models import Article, Gene, Sequence
+from genenews_main.models import Article, Gene, Sequence, Vote
 from genenews_main.forms import SubmissionForm
 
 def index(request):
@@ -74,8 +74,8 @@ def add_votes(request, articles):
         out = []
         for article in articles:
             if article.vote_set.filter(user=request.user):
-                out.append((article, article.vote_set.get(user=request.user)))
+                out.append((article, article.vote_set.get(user=request.user), reduce(lambda x, y: x.vote+y.vote, article.vote_set.all(), Vote(vote=0))))
             else:
-                out.append((article, None))
+                out.append((article, None, 0))
 
         return out

@@ -21,3 +21,11 @@ div.articlevote img {
     display: block;
     float: none; clear: both;
 }
+
+span.red {
+    color: red;
+}
+
+span.blue {
+    color: blue;
+}

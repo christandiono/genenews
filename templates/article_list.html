@@ -1,5 +1,5 @@
 <ol>
-{% for article, vote in entries %}
+{% for article, vote, points in entries %}
 <li>{% include 'article_item.html' %}</li>
 {% empty %}
 <li>Too bad, no stories!</li>

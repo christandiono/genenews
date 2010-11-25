@@ -18,6 +18,10 @@
             <th>Last login</th>
             <td>{{ user.last_login|timesince }} ago</td>
         </tr>
+        <tr>
+            <th>Points earned</th>
+            <td>{{ user_points }}</td>
+        </tr>
     </table>
 </div>
 {% include 'article_list.html' %}
