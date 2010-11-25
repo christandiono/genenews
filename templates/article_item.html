@@ -17,7 +17,7 @@ posted by <a href="{% url user-index article.user.username %}">{{ article.user }
 |
 Genes:
 {% spaceless %}
-{% for gene in article.genes.all %}{% if not forloop.first %}, {% endif %}<a href="/jbrowse/?loc={{ gene.name }}&amp;seq={{ gene.sequence }}">{{ gene.name }}</a>{% empty %}
+{% for gene in article.genes.all %}{% if not forloop.first %}, {% endif %}<a href="{% url gene_page gene_name=gene.name %}">{{ gene.name }}</a>{% empty %}
 none
 {% endfor %}
 {% endspaceless %}

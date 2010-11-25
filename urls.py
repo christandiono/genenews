@@ -27,6 +27,7 @@ urlpatterns = patterns('',
 if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/chris/genenews/media'}),
+        (r'^jbrowse/$', 'django.views.static.serve', {'document_root': '/Users/chris/jbrowse_temp/jbrowse/'}),
         (r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/chris/genenews/static'}),
     )
 else:
