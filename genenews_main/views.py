@@ -68,7 +68,7 @@ def gene_page(request, gene_name):
 
 def add_votes(request, articles):
     if request.user.is_anonymous():
-        return [(article, None) for article in articles]
+        return [(article, None, 0) for article in articles]
 
     else:
         out = []
