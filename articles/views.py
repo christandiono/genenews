@@ -11,7 +11,10 @@ import simplejson as json
 
 def show_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
-    vote = Vote.objects.filter(user=request.user, article=article)
+    if request.user.is_anonymous():
+        vote = None
+    else:
+        vote = Vote.objects.filter(user=request.user, article=article)
     if vote:
         vote = vote[0]
     return render_to_response('articles/index.html', {'article': article, 'vote': vote}, context_instance=RequestContext(request))
