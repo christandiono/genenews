@@ -6,7 +6,7 @@ git pull git://github.com/christandiono/genenews.git
 rm -rf /usr/local/var/genenews/settings_local.py
 ln -s /usr/local/var/genenews/settings_local.production /usr/local/var/genenews/settings_local.py
 python manage.py syncdb
-launchctl stop it.unbit.projects.uwsgi
-launchctl start it.unbit.projects.uwsgi
+launchctl unload /Library/LaunchDaemons/it.unbit.projects.uwsgi
+launchctl load /Library/LaunchDaemons/it.unbit.projects.uwsgi
 chmod 777 /tmp/uwsgi.sock
 popd

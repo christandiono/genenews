@@ -98,3 +98,9 @@ APPEND_SLASH = True
 from settings_local import *
 
 SESSION_COOKIE_NAME = 'dev_sessionid' if DEBUG else 'sessionid'
+
+if not DEBUG:
+    pass
+    tempapps = list(INSTALLED_APPS)
+    tempapps.append('genenews.uwsgi_admin')
+    INSTALLED_APPS = tuple(tempapps)
