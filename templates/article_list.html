@@ -2,6 +2,6 @@
 {% for article, vote, points in entries %}
 <li class="{% cycle 'odd' 'even' %}{% if forloop.first or forloop.last %}{% if forloop.first %} first{% endif %}{% if forloop.last %} last{% endif %}{% endif %}">{% include 'article_item.html' %}</li>
 {% empty %}
-<li>Too bad, no stories!</li>
+<li>No stories were found!</li>
 {% endfor %}
 </ol>
