@@ -1,6 +1,6 @@
-<ol>
+<ol class="articlelist">
 {% for article, vote, points in entries %}
-<li>{% include 'article_item.html' %}</li>
+<li class="{% cycle 'odd' 'even' %}">{% include 'article_item.html' %}</li>
 {% empty %}
 <li>Too bad, no stories!</li>
 {% endfor %}

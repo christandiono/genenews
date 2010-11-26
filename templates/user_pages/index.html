@@ -8,7 +8,7 @@
     <table>
         <tr>
             <th>Submitted stories</th>
-            <td>{{ articles.count }}</td>
+            <td>{{ entries|length }}</td>
         </tr>
         <tr>
             <th>User since</th>
@@ -24,5 +24,6 @@
         </tr>
     </table>
 </div>
+<h3>Submitted stories</h3>
 {% include 'article_list.html' %}
 {% endblock content %}

@@ -17,8 +17,15 @@ def show_article(request, article_id):
         for a in gene.article_set.all():
             if a.id != article.id:
                 related.append(a)
+    likes = 0
+    dislikes = 0
+    for v in article.vote_set.all():
+        if v.vote == 1:
+            likes += 1
+        elif v.vote == -1:
+            dislikes +=1
     entries = add_votes(request, related)
-    return render_to_response('articles/index.html', {'article': article, 'vote': vote, 'points': points, 'entries': entries}, context_instance=RequestContext(request))
+    return render_to_response('articles/index.html', {'article': article, 'vote': vote, 'points': points, 'entries': entries, 'likes': likes, 'dislikes': dislikes}, context_instance=RequestContext(request))
 
 @login_required
 def vote(request):

@@ -13,7 +13,8 @@
     <body>
         <div id="header">
         <h1><a href="{% url index %}">GeneNews</a></h1>
-        <p id="loginarea">{% if request.user.is_authenticated %}Welcome, {{ request.user.username }} (<a href="{% url auth_logout %}">logout</a>) | <a href="{% url submit %}">Submit something</a>{% else %}<a href="{% url register %}">Register</a> | <a href="{% url auth_login %}?next={{ request.path }}">Login</a>{% endif %}</p>
+        <div id="loginarea">{% if request.user.is_authenticated %}Welcome, <a href="{% url user-index user_name=request.user.username %}">{{ request.user.username }}</a>! (<a href="{% url auth_logout %}">logout</a>) | <a href="{% url submit %}">Submit something</a>{% else %}<a href="{% url register %}">Register</a> | <a href="{% url auth_login %}?next={{ request.path }}">Login</a>{% endif %}
+        </div>
         </div>
         <div id="content">
         {% block content %}{% endblock content %}

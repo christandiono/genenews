@@ -3,7 +3,27 @@
 {% block title %}{{ article.title }}{% endblock title %}
 
 {% block content %}
-<ul>
+<div id="articleinfo">
+    <table>
+        <tr>
+            <th>Submitted</th>
+            <td>{{ article.date|timesince }} ago</td>
+        </tr>
+        <tr>
+            <th>Points</th>
+            <td>{{ points }}</td>
+        </tr>
+        <tr>
+            <th>Likes</th>
+            <td>{{ likes }}</td>
+        </tr>
+        <tr>
+            <th>Dislikes</th>
+            <td>{{ dislikes }}</td>
+        </tr>
+    </table>
+</div>
+<ul class="singlearticle">
     <li>
     {% include 'article_item.html' %}
     </li>

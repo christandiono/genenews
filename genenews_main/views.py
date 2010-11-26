@@ -73,7 +73,7 @@ def add_votes(request, articles):
     else:
         out = []
         for article in articles:
-            if article.vote_set.filter(user=request.user):
+            if article.vote_set.filter(user=request.user).exists():
                 out.append((article, article.vote_set.get(user=request.user), sum(map(lambda x: x.vote, article.vote_set.all()))))
             else:
                 out.append((article, None, sum(map(lambda x: x.vote, article.vote_set.all()))))

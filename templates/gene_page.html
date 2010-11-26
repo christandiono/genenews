@@ -7,19 +7,19 @@
 <div id="geneinfo">
     <table>
         <tr>
-            <th>Sequence:</th>
+            <th>Sequence</th>
             <td><a href="/jbrowse/?seq={{ gene.sequence }}">{{ gene.sequence }}</a></td>
         </tr>
         <tr>
-            <th>Exact location:</th>
+            <th>Exact location</th>
             <td><a href="/jbrowse/?loc={{ gene.name }}">{{ gene.name }}</a></td>
         </tr>
         <tr>
-            <th>JBrowse track:</th>
+            <th>JBrowse track</th>
             <td><a href="/jbrowse/?seq={{ gene.sequence }}&amp;tracks={{ gene.track }}">{{ gene.track }}</a></td>
         </tr>
         <tr>
-            <th>GenBank:</th>
+            <th>GenBank</th>
             <td><a href="http://www.ncbi.nlm.nih.gov/nuccore/{{ gene.name }}/">{{ gene.name }}</a></td>
         </tr>
     </table>

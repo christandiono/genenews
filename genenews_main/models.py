@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 # Create your models here.
 
@@ -38,6 +39,7 @@ class Article(models.Model):
     title = models.CharField(max_length=300)
     url = models.URLField()
     genes = models.ManyToManyField(Gene)
+    date = models.DateTimeField(auto_now_add=True, default=datetime.datetime.now())
 
     def __unicode__(self):
         return unicode(self.title)
