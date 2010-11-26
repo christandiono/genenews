@@ -35,9 +35,5 @@
 	</dict>
     <key>LaunchOnlyOnce</key>
     <true/>
-    <key>StandardOutPath</key>
-    <string>/var/log/perlfastcgi.log</string>
-    <key>StandardErrorPath</key>
-    <string>/var/log/perlfastcgi.log</string>
 </dict>
 </plist>

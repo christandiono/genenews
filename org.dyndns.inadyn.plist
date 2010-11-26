@@ -12,9 +12,5 @@
 	<array>
 		<string>/usr/local/bin/inadyn</string>
 	</array>
-    <key>StandardOutPath</key>
-    <string>/var/log/inadyn.log</string>
-    <key>StandardErrorPath</key>
-    <string>/var/log/inadyn.log</string>
 </dict>
 </plist>
