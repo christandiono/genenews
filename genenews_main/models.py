@@ -56,4 +56,4 @@ class Vote(models.Model):
         return self.vote==-1
 
     def __unicode__(self):
-        return "%s voted %s on %s" % (unicode(self.user), 'up' if self.is_upvote else 'down', unicode(self.article))
+        return "%s voted %s on %s" % (unicode(self.user), 'up' if self.is_upvote() else 'down', unicode(self.article))
