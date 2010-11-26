@@ -19,6 +19,8 @@
         <string>--chmod-socket=777</string>
         <string>--pythonpath</string>
         <string>/usr/local/var</string>
+        <string>--logto</string>
+        <string>/var/log/uwsgi.log</string>
 	</array>
 	<key>Sockets</key>
 	<dict>
