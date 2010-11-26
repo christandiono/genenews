@@ -12,12 +12,15 @@
     </head>
     <body>
         <div id="header">
-        <h1><a href="{% url index %}">GeneNews</a></h1>
+            <h1><div><a href="{% url index %}"><img src="/images/logo.png" style="border: none;" /></a></div></h1>
         <div id="loginarea">{% if request.user.is_authenticated %}Welcome, <a href="{% url user-index user_name=request.user.username %}">{{ request.user.username }}</a>! (<a href="{% url auth_logout %}">logout</a>) | <a href="{% url submit %}">Submit something</a>{% else %}<a href="{% url register %}">Register</a> | <a href="{% url auth_login %}?next={{ request.path }}">Login</a>{% endif %}
         </div>
         </div>
         <div id="content">
         {% block content %}{% endblock content %}
+        </div>
+        <div id="footer">
+            Copyright &copy; 2010 | <a href="mailto:christandiono@berkeley.edu">Contact</a>
         </div>
     </body>
 </html>

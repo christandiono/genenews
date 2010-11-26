@@ -1,9 +1,14 @@
 body {
     margin: 0 auto;
-    font-family: Arial,Helvetica,Sans-Serif;
+    font-family: Helvetica,Arial,Sans-Serif;
     font-size: 0.9em;
-    background-color: #fff;
+    background-color: #99BBFF;
     position: relative;
+    width: 1000px;
+}
+
+a {
+    text-decoration: none;
 }
 
 img.vote, img.borderless {
@@ -12,6 +17,10 @@ img.vote, img.borderless {
 
 div#content {
     position: relative;
+}
+
+div#content h2 {
+    padding-left: 0em;
 }
 
 div#loginarea {
@@ -27,13 +36,13 @@ div#geneinfo, div#userinfo, div#articleinfo {
     border: dotted 1px;
     border-radius: 5px;
     -moz-border-radius: 5px;
+    background-color: white;
 }
 
 div.articlevote {
     width: 15px;
     float: left;
     clear: left;
-    padding-right: 0.5em;
 }
 
 div.articlevote img {
@@ -50,8 +59,13 @@ span.blue {
     color: blue;
 }
 
-li.even {background-color: #ffffff;}
-li.odd {background-color: #efefef;}
+li.even {
+    background-color: rgba(255,255,255,0.6);
+}
+
+li.odd {
+    background-color: rgba(239,239,239,0.6);
+}
 
 ol.articlelist {
     list-style: none; 
@@ -59,8 +73,18 @@ ol.articlelist {
     margin: 0;
 }
 
+ol.articlelist li {
+    padding: 0.5em;
+    margin: 0;
+}
+
 ul.singlearticle {
     list-style: none;
     padding: 0;
     margin: 0;
+}
+
+div#footer {
+    text-align: center;
+    padding: 0.5em;
 }
