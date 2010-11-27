@@ -1,10 +1,22 @@
+html {
+    height: 100%;
+}
+
 body {
-    margin: 0 auto;
     font-family: Helvetica,Arial,Sans-Serif;
     font-size: 0.9em;
     background-color: #99BBFF;
-    position: relative;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+div#container {
+    margin: 0 auto;
     width: 1000px;
+    position: relative;
 }
 
 a {

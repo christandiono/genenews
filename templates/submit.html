@@ -62,8 +62,14 @@ $(document).ready(function(){
                     <p style="margin:3px"><input type="checkbox" name="gene" value="{{ gene.id }}" id="gene_{{ gene.id }}" checked="checked" onchange="$(this.parentNode).hide(); members.splice(members.indexOf(this.value), 1);" /><label for="gene_{{ gene.id}}">{{ gene }}</label></p>
                     {% endfor %}</div></td>
 			<td>{% comment %}empty{% endcomment %}</td>
-		</tr>
+        </tr>
+        <tr>
+            <th></th>
+            <td>
+                <input type="submit" value="Submit" />
+            </td>
+            <td></td>
+        </tr>
 	</table>
-	<input type="submit" value="Submit" />
 </form>
 {% endblock content %}
