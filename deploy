@@ -7,7 +7,6 @@ rm -rf /usr/local/var/genenews/settings_local.py
 ln -s /usr/local/var/genenews/settings_local.production /usr/local/var/genenews/settings_local.py
 python manage.py syncdb
 python manage.py evolve --hint --execute
-launchctl unload /Library/LaunchDaemons/it.unbit.projects.uwsgi.plist
-launchctl load /Library/LaunchDaemons/it.unbit.projects.uwsgi.plist
-chmod 777 /tmp/uwsgi.sock
+/etc/rc.d/uwsgi stop
+/etc/rc.d/uwsgi start
 popd
