@@ -7,7 +7,7 @@ from django.template import RequestContext
 from genenews.genenews_main.models import Article, Vote
 from genenews.genenews_main.views import add_votes
 
-import simplejson as json
+import json
 
 def show_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)

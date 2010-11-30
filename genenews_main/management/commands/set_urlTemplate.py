@@ -1,4 +1,4 @@
-import simplejson as json
+import json
 import urllib, glob
 from django.core.management.base import BaseCommand
 from genenews.genenews_main.models import Gene, Sequence, Track
