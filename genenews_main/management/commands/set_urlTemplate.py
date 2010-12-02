@@ -8,7 +8,7 @@ from optparse import make_option
 
 
 class Command(BaseCommand):
-    args = "<data_dir, seq_names=..., track_names=...>"
+    args = "<--data_dir=..., --seq_names=..., --track_names=...>"
     help = "Looks in the data_dir to populate the database of sequences and genes"
     option_list = BaseCommand.option_list + (make_option('--seq_names', dest="seq_names"), make_option('--track_names', dest="track_names"), make_option('--data_dir', dest="data_dir"))
 
