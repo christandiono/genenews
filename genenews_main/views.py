@@ -70,14 +70,14 @@ def gene_page(request, gene_name):
 
 def add_votes(request, articles):
     if request.user.is_anonymous():
-        return [(article, None, sum(map(lambda x: x.vote, article.vote_set.all()))) for article in articles]
+        return [(article, None) for article in articles]
 
     else:
         out = []
         for article in articles:
             if article.vote_set.filter(user=request.user).exists():
-                out.append((article, article.vote_set.get(user=request.user), sum(map(lambda x: x.vote, article.vote_set.all()))))
+                out.append((article, article.vote_set.get(user=request.user)))
             else:
-                out.append((article, None, sum(map(lambda x: x.vote, article.vote_set.all()))))
+                out.append((article, None))
 
         return out

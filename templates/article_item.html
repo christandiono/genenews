@@ -9,7 +9,7 @@
 
 <div class="articletext">    
 <h3><a href="{{ article.url }}">{{ article.title }}</a></h3>
-Points: <span id="points_{{ article.id }}" class="{% if vote %}{% if vote.is_upvote %}red{% endif %}{% if vote.is_downvote %}blue{% endif %}{% endif %}">{{ points }}</span>
+Points: <span id="points_{{ article.id }}" class="{% if vote %}{% if vote.is_upvote %}red{% endif %}{% if vote.is_downvote %}blue{% endif %}{% endif %}">{{ article.get_score }}</span>
 |
 <a href="{% url article article_id=article.id %}">Permalink</a>
 |

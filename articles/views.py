@@ -11,7 +11,7 @@ import json
 
 def show_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
-    [(article, vote, points)] = add_votes(request, [article])
+    [(article, vote)] = add_votes(request, [article])
     related = []
     for gene in article.genes.all():
         for a in gene.article_set.all():
@@ -25,7 +25,7 @@ def show_article(request, article_id):
         elif v.vote == -1:
             dislikes +=1
     entries = add_votes(request, related)
-    return render_to_response('articles/index.html', {'article': article, 'vote': vote, 'points': points, 'entries': entries, 'likes': likes, 'dislikes': dislikes}, context_instance=RequestContext(request))
+    return render_to_response('articles/index.html', {'article': article, 'vote': vote, 'entries': entries, 'likes': likes, 'dislikes': dislikes}, context_instance=RequestContext(request))
 
 @login_required
 def vote(request):

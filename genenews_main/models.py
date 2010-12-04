@@ -44,6 +44,12 @@ class Article(models.Model):
     def __unicode__(self):
         return unicode(self.title)
 
+    def get_score(self):
+        score = 0
+        for vote in self.vote_set.all():
+            score += vote.vote
+        return score
+
 class Vote(models.Model):
     article = models.ForeignKey(Article)
     user = models.ForeignKey(User)
@@ -57,3 +63,10 @@ class Vote(models.Model):
 
     def __unicode__(self):
         return "%s voted %s on %s" % (unicode(self.user), 'up' if self.is_upvote() else 'down', unicode(self.article))
+
+def get_user_score(user):
+    score = 0
+    for article in user.article_set.all():
+        for vote in article.vote_set.all():
+            score += vote.vote
+    return score
