@@ -18,7 +18,7 @@ Select time period:
 {% if entries %}
 <ol>
 {% for score, user, stories in entries %}
-    <li id="{{ user.username }}"><a href="{% url user-index user.username %}">{{ user.username }}</a>: {{ score }} points, {{ stories }} stories</li>
+    <li><a href="{% url user-index user.username %}" name="{{ user.username }}">{{ user.username }}</a>: {{ score }} points, {{ stories }} stories</li>
 {% endfor %}
 </ol>
 {% else %}
