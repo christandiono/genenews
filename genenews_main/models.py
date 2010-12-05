@@ -95,7 +95,7 @@ class LeaderboardManager(models.Manager):
 
             # rebuild it
             for user in User.objects.all():
-                if not exclude_zero or user.article_set.filter(date__gte=type_to_date(type)).count():
+                if not exclude_zero or user.article_set.filter(date__gte=type_to_date(t)).count():
                     tempentries.append((get_user_score(user=user, type=t), user))
                 tempentries.sort()
                 tempentries.reverse()
