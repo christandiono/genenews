@@ -84,7 +84,7 @@ def get_user_score(user, type='all'):
 class LeaderboardManager(models.Manager):
     def update(self, exclude_zero=True, type='all'):
         if type == 'all':
-            types = ['year', 'month', 'day']
+            types = ['year', 'month', 'day', 'all']
         else:
             types = [type]
 
