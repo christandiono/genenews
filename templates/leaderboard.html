@@ -4,7 +4,7 @@
 
 {% block content %}
 <h2>Leaderboard</h2>
-<form method="GET" action="{% url leaderboard %}">
+<form method="get" action="{% url leaderboard %}">
 Select time period:
 <select name="type" onchange="window.location.href = '{% url leaderboard %}?type=' + options[selectedIndex].value;">
 <option value="all"{% if type == 'all' %} selected="selected"{% endif %}>All time</option>
