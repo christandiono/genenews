@@ -24,7 +24,7 @@ def leaderboard(request):
 
     LeaderboardCache.objects.update(type=type)
     for entry in LeaderboardCache.objects.filter(type=type):
-        entries.append((entry.score, entry.user))
+        entries.append((entry.score, entry.user, entry.user.article_set.filter(date__gte=type_to_date(type)).count()))
     entries.sort()
     entries.reverse()
     return render_to_response('leaderboard.html', {'entries': entries, 'type': type}, context_instance=RequestContext(request))

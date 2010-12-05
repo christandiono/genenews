@@ -17,8 +17,8 @@ Select time period:
 <p>Here are the people with the most points over {% if type == 'all' %}all time{% else %}the last {{type}}{% endif %} on Genenews!</p>
 {% if entries %}
 <ol>
-{% for score, user in entries %}
-    <li id="{{ user.username }}"><a href="{% url user-index user.username %}">{{ user.username }}</a>: {{ score }} points, {{ user.article_set.count }} stories</li>
+{% for score, user, stories in entries %}
+    <li id="{{ user.username }}"><a href="{% url user-index user.username %}">{{ user.username }}</a>: {{ score }} points, {{ stories }} stories</li>
 {% endfor %}
 </ol>
 {% else %}
