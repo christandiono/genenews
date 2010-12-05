@@ -89,15 +89,18 @@ class LeaderboardManager(models.Manager):
             types = [type]
 
         for t in types:
+            # empty cache
             tempentries = []
+            self.filter(type=t).delete()
+
+            # rebuild it
             for user in User.objects.all():
                 if not exclude_zero or user.article_set.filter(date__gte=type_to_date(type)).count():
                     tempentries.append((get_user_score(user=user, type=t), user))
-            tempentries.sort()
-            tempentries.reverse()
-            self.filter(type=t).delete()
-            for index, temp in enumerate(tempentries):
-                lbcache = self.create(user=temp[1], score=temp[0], rank=index+1, type=t) # already deleted other objects, so ok to create
+                tempentries.sort()
+                tempentries.reverse()
+                for index, temp in enumerate(tempentries):
+                    lbcache = self.create(user=temp[1], score=temp[0], rank=index+1, type=t) # already deleted other objects, so ok to create
 
 class LeaderboardCache(models.Model):
     objects = LeaderboardManager()
