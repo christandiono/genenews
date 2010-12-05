@@ -7,7 +7,7 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirec
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.encoding import smart_str
-from genenews_main.models import Article, Gene, Sequence, Vote, LeaderboardCache, get_user_score
+from genenews_main.models import Article, Gene, Sequence, Vote, LeaderboardCache, get_user_score, type_to_date
 from genenews_main.forms import SubmissionForm
 
 def index(request):
