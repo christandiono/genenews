@@ -22,6 +22,16 @@
             <th>Points earned</th>
             <td>{{ user_points }}</td>
         </tr>
+        <tr>
+            <th>Leaderboard rank</th>
+            <td>
+            {% if user_rank %}
+            <a href="{% url leaderboard %}#{{ user.username }}">#{{ user_rank }} all time</a>
+            {% else %}
+            N/A
+            {% endif %}
+            </td>
+        </tr>
     </table>
 </div>
 <h3>Submitted stories</h3>

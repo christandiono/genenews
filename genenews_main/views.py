@@ -1,18 +1,33 @@
 # Create your views here.
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.encoding import smart_str
-from genenews_main.models import Article, Gene, Sequence, Vote
+from genenews_main.models import Article, Gene, Sequence, Vote, LeaderboardCache, get_user_score
 from genenews_main.forms import SubmissionForm
 
 def index(request):
     articles = Article.objects.all().order_by('-pk')[:25]
     entries = add_votes(request, articles)
     return render_to_response('index.html',{'entries': entries}, context_instance=RequestContext(request))
+
+def leaderboard(request):
+    entries = []
+    type = request.GET.get('type', 'all')
+
+    if type not in ['all', 'year', 'month', 'day']:
+        type = 'all'
+
+    LeaderboardCache.objects.update(type=type)
+    for entry in LeaderboardCache.objects.filter(type=type):
+        entries.append((entry.score, entry.user))
+    entries.sort()
+    entries.reverse()
+    return render_to_response('leaderboard.html', {'entries': entries, 'type': type}, context_instance=RequestContext(request))
 
 @login_required
 def submit(request):

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Leaderboard{% endblock title %}
+
+{% block content %}
+<h2>Leaderboard</h2>
+<form method="GET" action="{% url leaderboard %}">
+Select time period:
+<select name="type" onchange="window.location.href = '{% url leaderboard %}?type=' + options[selectedIndex].value;">
+<option value="all"{% if type == 'all' %} selected="selected"{% endif %}>All time</option>
+<option value="year"{% if type == 'year' %} selected="selected"{% endif %}>Last year</option>
+<option value="month"{% if type == 'month' %} selected="selected"{% endif %}>Last month</option>
+<option value="day"{% if type == 'day' %} selected="selected"{% endif %}>Last day</option>
+</select>
+<input type="submit" value="Go" />
+</form>
+<p>Here are the people with the most points over {% if type == 'all' %}all time{% else %}the last {{type}}{% endif %} on Genenews!</p>
+{% if entries %}
+<ol>
+{% for score, user in entries %}
+    <li id="{{ user.username }}"><a href="{% url user-index user.username %}">{{ user.username }}</a>: {{ score }} points, {{ user.article_set.count }} stories</li>
+{% endfor %}
+</ol>
+{% else %}
+Hmm, there aren't any leaderboard entries for the time period you've selected...why not <a href="{% url submit %}">submit something</a> and get yourself on here?
+{% endif %}
+{% endblock content %}
