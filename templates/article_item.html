@@ -2,8 +2,8 @@
     
 <div class="articlevote">
 {% with article.id as article_id %}
-<a href="{% if request.user.is_authenticated %}javascript:void(0);{% else %}{% url auth_login %}?next={% url article article.id %}{% endif %}"><img class="vote" id="up_{{ article.id }}" src="/images/aup{% if vote and vote.is_upvote %}mod" alt="upped{% else %}gray" alt="up{% endif %}" /></a>
-<a href="{% if request.user.is_authenticated %}javascript:void(0);{% else %}{% url auth_login %}?next={% url article article.id %}{% endif %}"><img class="vote" id="down_{{ article.id }}" src="/images/adown{% if vote and vote.is_downvote %}mod" alt="downed{% else %}gray" alt="down{% endif %}" /></a>
+<a href="{% if request.user.is_authenticated %}javascript:void(0);{% else %}{% url auth_login %}?next={% url article article.id %}{% endif %}"><img class="vote" id="up_{{ article.id }}" src="/images/aup{% if vote and vote.is_upvote %}mod.gif" alt="upped{% else %}gray.gif" alt="up{% endif %}" /></a>
+<a href="{% if request.user.is_authenticated %}javascript:void(0);{% else %}{% url auth_login %}?next={% url article article.id %}{% endif %}"><img class="vote" id="down_{{ article.id }}" src="/images/adown{% if vote and vote.is_downvote %}mod.gif" alt="downed{% else %}gray.gif" alt="down{% endif %}" /></a>
 {% endwith %}
 </div>
 

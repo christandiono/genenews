@@ -22,7 +22,7 @@ def leaderboard(request):
     if type not in ['all', 'year', 'month', 'day']:
         type = 'all'
 
-    LeaderboardCache.objects.update(type=type)
+    LeaderboardCache.objects.update(type=type) # only temporarily until a cron job can be set up
     for entry in LeaderboardCache.objects.filter(type=type):
         entries.append((entry.score, entry.user, entry.user.article_set.filter(date__gte=type_to_date(type)).count()))
     entries.sort()
