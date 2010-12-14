@@ -111,3 +111,8 @@ class LeaderboardCache(models.Model):
 
     def __unicode__(self):
        return "%s is ranked %s with %s points over %s" % (self.user, self.rank, self.score, self.type)
+
+class Badge(models.Model):
+    text = models.TextField()
+    user = models.ForeignKey(User)
+    image = models.ImageField(upload_to='badgepics')
