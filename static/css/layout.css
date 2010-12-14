@@ -123,3 +123,14 @@ div#footer {
     text-align: center;
     padding: 0.5em;
 }
+
+div.error, ul.errorlist {
+    display: block;
+    border: 1px solid #f80;
+    background-color: #fd8;
+    padding: 10px;
+    border-radius: 0.4em;
+    -webkit-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    list-style: none;
+}

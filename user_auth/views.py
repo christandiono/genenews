@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from django.views.decorators.cache import never_cache
 
 from django.contrib.auth.forms import *
+from user_auth.forms import UserCreationForm
 ResetPasswordForm = PasswordResetForm
 import user_auth.settings as settings
 
