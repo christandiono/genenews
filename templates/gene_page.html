@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <th>GenBank</th>
-            <td><a href="http://www.ncbi.nlm.nih.gov/nuccore/{{ gene.name }}/">{{ gene.name }}</a></td>
+            <td><a href="http://www.ncbi.nlm.nih.gov/{% if gene.track.name != "omimGene" %}nuccore{% else %}omim{% endif %}/{{ gene.name }}/">{{ gene.name }}</a></td>
         </tr>
     </table>
 </div>
