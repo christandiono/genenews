@@ -15,6 +15,6 @@ def index(request, user_name):
     try:
         user_rank = LeaderboardCache.objects.get(user=user, type='all').rank
     except LeaderboardCache.DoesNotExist:
-        pass # do nothing; won't show up in template anyway
+        user_rank = None # do nothing; won't show up in template anyway
     return render_to_response('user_pages/index.html', {'user': user, 'entries': entries, 'user_points': user_points, 'user_rank': user_rank}, context_instance=RequestContext(request))
 

@@ -33,6 +33,16 @@
             </td>
         </tr>
     </table>
+<div id="badges" style="text-align: center;">
+    {% if user.badge_set.exists %}
+        <p><strong>Badges:</strong></p>
+    {% for badge in user.badge_set.all %}
+        <img src="/media/{{ badge.image }}" alt="{{badge}}" height="64px" width="64px" />
+    {% empty %}
+        <p>None</p>
+    {% endfor %}
+    {% endif %}
+</div>
 </div>
 <h3>Submitted stories</h3>
 {% include 'article_list.html' %}
