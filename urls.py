@@ -29,7 +29,7 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/chris/genenews/media'}),
         (r'^jbrowse/$', 'django.views.static.serve', {'document_root': '/home/chris/jbrowse_temp/jbrowse/'}),
-        (r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/Users/chris/genenews/static'}),
+        (r'^(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/chris/genenews/static'}),
     )
 else:
     urlpatterns += patterns('',

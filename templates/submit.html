@@ -23,13 +23,13 @@ $(document).ready(function(){
       return item;},
     parse: function(data) {
       var array = new Array();
-      for (var i=0; i<data.length; i++){
+      for (var i=0, ii=data.length; i<ii; i++){
         array[array.length]={value: data[i].id, data: data[i].name};
       }
       return array;
     }}
   ).result(function(event, item, id) {
-    if (members.indexOf(item) == -1)
+    if ($.inArray(item, members) == -1)
     {
     $('#genes').append('<p style="margin:3px"><input type="checkbox" name="gene" value="'+id+'" id="gene_'+id+'" checked="checked" onchange="$(this.parentNode).hide(); members.splice(members.indexOf(this.value), 1);" /><label for="gene_'+id+'">'+item+'</label></p>');
       members.splice(members.length,0,item);
