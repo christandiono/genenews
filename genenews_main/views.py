@@ -77,13 +77,10 @@ def gene_autocomplete(request):
     return resp
 
 def gene_page(request, gene_name):
-    try:
-        gene = get_object_or_404(Gene, name=gene_name)
-    except MultipleObjectsReturned:
-        genes = Gene.objects.filter(name=gene_name)
-        if not genes.exists():
-            raise Http404
-        gene = genes[0] # just get the first gene that comes up
+    genes = Gene.objects.filter(name=gene_name)
+    if not genes.exists():
+        raise Http404
+    gene = genes[0] # just get the first gene that comes up
 
     articles = gene.article_set.all()
     entries = add_votes(request, articles)
