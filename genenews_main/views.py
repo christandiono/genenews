@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseRedirect, Http404
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils.encoding import smart_str
@@ -77,7 +77,14 @@ def gene_autocomplete(request):
     return resp
 
 def gene_page(request, gene_name):
-    gene = get_object_or_404(Gene, name=gene_name)
+    try:
+        gene = get_object_or_404(Gene, name=gene_name)
+    except MultipleObjectsReturned:
+        genes = Gene.objects.filter(name=gene_name)
+        if not genes.exists():
+            raise Http404
+        gene = genes[0] # just get the first gene that comes up
+
     articles = gene.article_set.all()
     entries = add_votes(request, articles)
     seq = gene.sequence
