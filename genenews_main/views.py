@@ -43,8 +43,8 @@ def submit(request):
             article.user = request.user
             article.save()
             map(lambda g: article.genes.add(g), genes)
-            a = article.save()
-            v = Vote(article=a, user=request.user, vote=1)
+            article.save()
+            v = Vote(article=article, user=request.user, vote=1)
             v.save()
             return HttpResponseRedirect(reverse('article', args=[article.id]))
     else:
