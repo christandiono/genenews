@@ -13,7 +13,7 @@ Points: <span id="points_{{ article.id }}" class="{% if vote %}{% if vote.is_upv
 |
 <a href="{% url article article_id=article.id %}">Permalink</a>
 |
-posted by <a href="{% url user-index article.user.username %}">{{ article.user }}</a>
+posted by <a href="{% url user-index article.user.username %}">{{ article.user }}</a> {{ article.date|since }} ago
 |
 Genes:
 {% spaceless %}
